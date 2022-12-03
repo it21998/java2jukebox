@@ -24,7 +24,12 @@ public class App {
 		}
 		// Check strategy of user.Must be either loop or random or order!
 		if (args.length == 2) {
-			if (!args[1].contains("loop") && !args[1].contains("random") && !args[1].contains("order")) {
+			if (args[1].length() >= 4 && args[1].length() <= 6) {
+				if (!args[1].contains("loop") && !args[1].contains("random") && !args[1].contains("order")) {
+					System.out.println("The default strategies are : loop / random / order! Try again!");
+					System.exit(0);
+				}
+			} else {
 				System.out.println("The default strategies are : loop / random / order! Try again!");
 				System.exit(0);
 			}
@@ -35,14 +40,16 @@ public class App {
 		try {
 			// first case:user only types song/playlist file
 			if (args.length == 1) {
+				// case song
 				if (args[0].contains(".mp3")) {
 					InputStream song = new FileInputStream(args[0]);
 					System.out.println("Now playing: " + args[0]);
 					p.play(song);
 					p.stop();
-					System.out.println("Song: " + args[0]+" just ended!");
+					System.out.println("Song: " + args[0] + " just ended!");
 
 				} else {
+					// case m3ufile
 					try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 						String line;
 						while ((line = br.readLine()) != null) {
@@ -51,7 +58,7 @@ public class App {
 								System.out.println("Now playing: " + line);
 								p.play(song);
 								p.stop();
-								System.out.println("Song: " + line+" just ended!");
+								System.out.println("Song: " + line + " just ended!");
 
 							}
 						}
@@ -62,13 +69,15 @@ public class App {
 			else if (args.length == 2 && args[1].contains("loop")) {
 				while (true) {
 					if (args[0].contains(".mp3")) {
+						// case song
 						InputStream song = new FileInputStream(args[0]);
-						System.out.println("Now playing: " + args[0]+" with strategy: " + args[1]);
+						System.out.println("Now playing: " + args[0] + " with strategy: " + args[1]);
 						p.play(song);
 						p.stop();
-						System.out.println("Song: " + args[0]+" just ended!");
+						System.out.println("Song: " + args[0] + " just ended!");
 
 					} else {
+						// case m3ufile
 						try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 							String line;
 							while ((line = br.readLine()) != null) {
@@ -77,7 +86,7 @@ public class App {
 									System.out.println("Now playing: " + line + " with strategy: " + args[1]);
 									p.play(song);
 									p.stop();
-									System.out.println("Song: " +line+" just ended!");
+									System.out.println("Song: " + line + " just ended!");
 
 								}
 							}
@@ -95,7 +104,7 @@ public class App {
 							System.out.println("Now playing: " + line + " with stragety: " + args[1]);
 							p.play(song);
 							p.stop();
-							System.out.println("Song: " + line+" just ended!");
+							System.out.println("Song: " + line + " just ended!");
 
 						}
 					}
@@ -119,7 +128,7 @@ public class App {
 						System.out.println("Now playing: " + selected + " with stragety: " + args[1]);
 						p.play(song);
 						p.stop();
-						System.out.println("Song: " + selected+" just ended!");
+						System.out.println("Song: " + selected + " just ended!");
 						// remove duplicates
 						mysongs.remove(mysongs.indexOf(selected));
 						// refix arraylist after removal
