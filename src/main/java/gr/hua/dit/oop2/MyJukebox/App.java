@@ -49,7 +49,7 @@ public class App {
 					try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 						String line;
 						while ((line = br.readLine()) != null) {
-							if (line.contains("mp3")) {
+							if (line.contains(".mp3")) {
 								InputStream song = new FileInputStream(line);
 								System.out.println("Now playing: " + line);
 								p.play(song);
@@ -77,7 +77,7 @@ public class App {
 						try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 							String line;
 							while ((line = br.readLine()) != null) {
-								if (line.contains("mp3")) {
+								if (line.contains(".mp3")) {
 									InputStream song = new FileInputStream(line);
 									System.out.println("Now playing: " + line + " with strategy: " + args[1]);
 									p.play(song);
@@ -95,7 +95,7 @@ public class App {
 				try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 					String line;
 					while ((line = br.readLine()) != null) {
-						if (line.contains("mp3")) {
+						if (line.contains(".mp3")) {
 							InputStream song = new FileInputStream(line);
 							System.out.println("Now playing: " + line + " with stragety: " + args[1]);
 							p.play(song);
@@ -112,7 +112,7 @@ public class App {
 					String line;
 					ArrayList<String> mysongs = new ArrayList<String>();
 					while ((line = br.readLine()) != null) {
-						if (line.contains("mp3")) {
+						if (line.contains(".mp3")) {
 							mysongs.add(line);
 						}
 					}
