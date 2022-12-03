@@ -24,14 +24,10 @@ public class App {
 		}
 		// Check strategy of user.Must be either loop or random or order!
 		if (args.length == 2) {
-			if (args[1].length() >= 4 && args[1].length() <= 6) {
-				if (!args[1].contains("loop") && !args[1].contains("random") && !args[1].contains("order")) {
-					System.out.println("The default strategies are : loop / random / order! Try again!");
-					System.exit(0);
-				}
-			} else {
+			if (!args[1].equals("loop") && !args[1].equals("random") && !args[1].equals("order")) {
 				System.out.println("The default strategies are : loop / random / order! Try again!");
 				System.exit(0);
+
 			}
 		}
 		// Set player
@@ -66,7 +62,7 @@ public class App {
 				}
 			}
 			// second case:user types song/playlist file and strategy loop
-			else if (args.length == 2 && args[1].contains("loop")) {
+			else if (args.length == 2 && args[1].equals("loop")) {
 				while (true) {
 					if (args[0].contains(".mp3")) {
 						// case song
@@ -95,7 +91,7 @@ public class App {
 				}
 			}
 			// third case:user types playlist file and strategy order
-			else if (args.length == 2 && args[1].contains("order")) {
+			else if (args.length == 2 && args[1].equals("order")) {
 				try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 					String line;
 					while ((line = br.readLine()) != null) {
@@ -111,7 +107,7 @@ public class App {
 				}
 			}
 			// fourth case:user types playlist file and strategy random
-			else if (args.length == 2 && args[1].contains("random")) {
+			else if (args.length == 2 && args[1].equals("random")) {
 				try (BufferedReader br = new BufferedReader(new FileReader(args[0]))) {
 					String line;
 					ArrayList<String> mysongs = new ArrayList<String>();
